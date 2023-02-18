@@ -1,2 +1,2 @@
 /* /index.html 200
-/api/* http://crm.softvalley.sveducrm.com/api/admin/:splat 200
+/api/* http://crm.softvalley.sveducrm.com/api/:splat 200
