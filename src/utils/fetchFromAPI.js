@@ -3,13 +3,13 @@ axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getIte
 
 
 export const loginData = async (data) => {
-  return await axios.post("/login", data).then((res) => {
+  return await axios.post(`/api/login`, data).then((res) => {
       return res.data;
   });
 }
 
 export const fetchLeads = async () => {
-  return await axios.post("/lead/list").then((res) => {
+  return await axios.post("/api/lead/list").then((res) => {
       return res.data;
   });
 }
