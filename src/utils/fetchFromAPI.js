@@ -14,6 +14,12 @@ export const fetchLeads = async () => {
   });
 }
 
+export const filterLeads = async (data) => {
+  return await axios.post("/lead/list", data).then((res) => {
+      return res.data;
+  });
+}
+
 export const fetchStatus = async () => {
   return await axios.get("/base/lead-status",).then((res) => {
       return res.data;

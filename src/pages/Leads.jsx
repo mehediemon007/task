@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { fetchLeads, fetchStatus, fetchSource, fetchAssignee } from "../utils/fetchFromAPI";
+import { fetchLeads, fetchStatus, fetchSource, fetchAssignee, filterLeads } from "../utils/fetchFromAPI";
 import {API_BASE_URL} from "../constants";
 
 const Leads = () => {
@@ -8,6 +8,12 @@ const Leads = () => {
     const [statusData, setStatusData] = useState([]);
     const [sourceData, setSourceData] = useState([]);
     const [assigneeData, setAssigneeData] = useState([]);
+
+    const [filterValues, setfilterValues] = useState({
+        statuses:[],
+        sources:[],
+        assignees:[]
+    })
 
     const fetchData = async (page) =>{
         fetchLeads()
@@ -39,6 +45,23 @@ const Leads = () => {
         }).catch((err) => err);
     }
 
+    const handleFilter = (e) =>{
+        setfilterValues({
+            ...filterValues,
+            [e.target.name] : [...filterValues[e.target.name], e.target.value]
+        });
+    }
+
+    const submitFilter = (e) =>{
+        e.preventDefault();
+        filterLeads(filterValues)
+        .then((res) => {
+            if(res.code === 200){
+                console.log(res.data)
+            }
+        }).catch((err) => err);
+    }
+
     useEffect(()=>{
         fetchData(1);
     },[])
@@ -47,25 +70,28 @@ const Leads = () => {
         <>
             <div className="leads">
                 <div className="container">
-                    <div className="filter-toolbar">
+                    <form className="filter-toolbar" onSubmit={submitFilter}>
                         <div className="single-filter">
-                            <select name="status" id="status">
+                            <select name="statuses" id="status" defaultValue={"default"} onChange={handleFilter}>
+                                <option value="default" hidden>Statues</option>
                                 {statusData.map(status => (
-                                    <option value={status.id} key={status.id}>{status.id}</option>
+                                    <option value={status.id} key={status.id}>{status.name}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="single-filter">
-                            <select name="sources" id="sources">
+                            <select name="sources" id="sources" defaultValue={"default"} onChange={handleFilter}>
+                                <option value="default" hidden>Sources</option>
                                 {sourceData.map(source => (
-                                    <option value={source.id} key={source.id}>{source.id}</option>
+                                    <option value={source.id} key={source.id}>{source.name}</option>
                                 ))}
                             </select>
                         </div>
                         <div className="single-filter">
-                            <select name="assignees" id="assignees">
+                            <select name="assignees" id="assignees" defaultValue={"default"} onChange={handleFilter}>
+                                <option value="default" hidden>Assignees</option>
                                 {assigneeData.map(assignee => (
-                                    <option value={assignee.user_id} key={assignee.user_id}>{assignee.user_id}</option>
+                                    <option value={assignee.user_id} key={assignee.user_id}>{assignee.name}</option>
                                 ))}
                             </select>
                         </div>
@@ -79,10 +105,10 @@ const Leads = () => {
                             </select>
                         </div>
                         <div className="fiter-action-btns">
-                            <button className='btn-primary'>Filter</button>
+                            <button className='btn-primary' type='submit' onSubmit={submitFilter}>Filter</button>
                             <button>Reset</button>
                         </div>
-                    </div>
+                    </form>
                     <div className="leads-table-wpr">
                         <table className="table table-responsive">
                             <thead>

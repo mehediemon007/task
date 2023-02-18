@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginData } from "../utils/fetchFromAPI";
+import axios from 'axios';
 import Swal from "sweetalert2";
 
 const Login = () => {
@@ -23,6 +24,7 @@ const Login = () => {
                     res?.message,
                     "success"
                 );
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
                 navigate('/admin/leads')
             }
         }).catch((err) => {
