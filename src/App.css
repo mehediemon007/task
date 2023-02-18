@@ -138,8 +138,8 @@ button {
 .login .btn-primary,
 .login .btn-primary:hover{
   width: 100px;
-  background-color: #3f5087;
-  border-color: #3f5087;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
   border-radius: 4px;
 }
 
@@ -154,13 +154,18 @@ button {
 
 .single-filter select{
     width: 100%;
-    height: 30px;
+    height: 35px;
     font-size: 14px;
     font-weight: 500 !important;
     color: #a7aebe;
     border-color: #e1e1e1;
     border-radius: 4px;
     padding: 0 8px;
+}
+
+.single-filter select:focus{
+    border-color: #e1e1e1;
+    outline: none;
 }
 
 .fiter-action-btns{
@@ -171,8 +176,23 @@ button {
 
 .fiter-action-btns button{
     width: 100%;
-    border: 0;
+    height: 35px;
+    font-size: 14px;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
     outline: none;
+    transition: var(--transition);
+}
+
+.fiter-action-btns button.btn-primary,
+.fiter-action-btns button:hover{
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.leads-table-wpr .table{
+    display: block;
 }
 
 
@@ -193,4 +213,54 @@ button {
     position: relative;
     margin-left: -4px;
     z-index: -1;
+}
+
+/* Responsive */
+
+/* Min Width 1600px */
+@media only screen and (min-width: 1600px){
+    .container{
+        max-width: 1550px !important;
+    }
+
+    .leads-table-wpr .table{
+        display: table;
+    }
+}
+
+/* Min Width 1200px */
+@media only screen and (min-width:1200px){
+
+    .container{
+        max-width: calc(100% - 80px);
+    }
+
+}
+
+/* Min Width 1200px */
+@media only screen and (max-width:991px){
+
+    .container{
+        max-width: 90%;
+    }
+
+}
+
+/* Min Width 1200px */
+@media only screen and (max-width:767px){
+
+    .container{
+        max-width: 95%;
+    }
+
+}
+
+/* Max Width 390px */
+
+@media only screen and (max-width:390px){
+
+    .container{
+        max-width: 100% !important;
+    }
+    
 }

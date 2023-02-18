@@ -1,16 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import { fetchLeads } from "../utils/fetchFromAPI";
+import { fetchLeads, fetchStatus, fetchSource, fetchAssignee } from "../utils/fetchFromAPI";
 import {API_BASE_URL} from "../constants";
 
 const Leads = () => {
 
-    const [leadsData, setleadsData] = useState([])
+    const [leadsData, setLeadsData] = useState([]);
+    const [statusData, setStatusData] = useState([]);
+    const [sourceData, setSourceData] = useState([]);
+    const [assigneeData, setAssigneeData] = useState([]);
 
     const fetchData = async (page) =>{
         fetchLeads()
         .then((res) => {
             if(res.code === 200){
-                setleadsData(res.data.data);
+                setLeadsData(res.data.data);
+            }
+        }).catch((err) => err);
+
+        fetchStatus()
+        .then((res) => {
+            if(res.code === 200){
+                setStatusData(res.data)
+            }
+        }).catch((err) => err);
+
+        fetchSource()
+        .then((res) => {
+            if(res.code === 200){
+                setSourceData(res.data)
+            }
+        }).catch((err) => err);
+
+        fetchAssignee()
+        .then((res) => {
+            if(res.code === 200){
+                setAssigneeData(res.data)
             }
         }).catch((err) => err);
     }
@@ -26,29 +50,23 @@ const Leads = () => {
                     <div className="filter-toolbar">
                         <div className="single-filter">
                             <select name="status" id="status">
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
+                                {statusData.map(status => (
+                                    <option value={status.id} key={status.id}>{status.id}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="single-filter">
                             <select name="sources" id="sources">
-                                <option value="1">21</option>
-                                <option value="1">12</option>
-                                <option value="1">221</option>
-                                <option value="1">12</option>
-                                <option value="1">21</option>
+                                {sourceData.map(source => (
+                                    <option value={source.id} key={source.id}>{source.id}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="single-filter">
                             <select name="assignees" id="assignees">
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
-                                <option value="1">1</option>
+                                {assigneeData.map(assignee => (
+                                    <option value={assignee.user_id} key={assignee.user_id}>{assignee.user_id}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="single-filter">
@@ -61,12 +79,12 @@ const Leads = () => {
                             </select>
                         </div>
                         <div className="fiter-action-btns">
-                            <button>Filter</button>
+                            <button className='btn-primary'>Filter</button>
                             <button>Reset</button>
                         </div>
                     </div>
                     <div className="leads-table-wpr">
-                        <table className="table">
+                        <table className="table table-responsive">
                             <thead>
                                 <tr>
                                     <th>
