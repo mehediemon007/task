@@ -28,7 +28,9 @@ const Login = () => {
         }).catch((err) => {
             if (err) {
                 if (err?.response?.data?.code === 422) {
-                    setErrors({ 'password': err?.response?.data?.errors?.password[0] ?? '', 'email': err?.response?.data?.errors?.email[0] ?? ''});
+                    setErrors({ 
+                        'password': err?.response?.data?.errors?.password[0] || '', 'email': err?.response?.data?.errors?.email[0] || ''
+                    });
                 }
                 if (err?.response?.data?.code === 404) {
                     setErrors({ 'email': 'Credentials Doesn\'t Match !' })

@@ -142,3 +142,55 @@ button {
   border-color: #3f5087;
   border-radius: 4px;
 }
+
+/* Lead Table */
+
+.filter-toolbar{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 24px;
+    padding: 16px;
+}
+
+.single-filter select{
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 500 !important;
+    color: #a7aebe;
+    border-color: #e1e1e1;
+    border-radius: 4px;
+    padding: 0 8px;
+}
+
+.fiter-action-btns{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+.fiter-action-btns button{
+    width: 100%;
+    border: 0;
+    outline: none;
+}
+
+
+.table th,
+.table td{
+    font-size: 14px;
+    min-width: max-content;
+    white-space: nowrap;
+    padding: 10px 16px !important;
+    vertical-align: middle;
+}
+
+.table td.assignees img{
+    width: 24px;
+}
+
+.table td.assignees img:not(:first-of-type){
+    position: relative;
+    margin-left: -4px;
+    z-index: -1;
+}

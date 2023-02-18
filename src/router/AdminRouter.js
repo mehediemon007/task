@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const privateRoute = () => {
     if (!localStorage.getItem("token")) {
-        return (window.location = "/login");
+        return (window.location = "/admin/login");
     }else{
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
     }

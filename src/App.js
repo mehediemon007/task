@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path='/' element={<Navigate to="/login"/>}/>
-          <Route exact path='/login' element={<Login/>}/>
+          <Route exact path='/' element={<Navigate to="/admin/login"/>}/>
+          <Route exact path='/admin/login' element={<Login/>}/>
           <Route exact path='/admin/*' element={<AdminRouter/>}/>
         </Routes>
       </Router>
