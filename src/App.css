@@ -1,38 +1,144 @@
-.App {
-  text-align: center;
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+
+:root {
+    /* Colors */
+    --primary-color: #3f5087;
+    --text-color: #000000;
+    --white-color: #ffffff;
+
+    /* Typography */
+    --body-font: "Roboto", sans-serif;
+    --title-font: "Roboto", sans-serif;
+    --font-weight-small: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --text-font-size: 16px;
+
+    /* Others */
+    --transition: 0.3s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html,
+body {
+    scroll-behavior: smooth;
+    vertical-align: baseline;
+    overflow-x: hidden;
+    transition: 0.3s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+img {
+    max-width: 100%;
+    height: auto;
+
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    backface-visibility: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--title-font);
+    font-weight: var(--font-weight-bold);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+    font-size: 60px;
+    font-weight: var(--font-weight-bold);
+}
+
+h2 {
+    font-size: 45px;
+    line-height: 60px;
+    font-weight: var(--font-weight-medium);
+}
+
+h4 {
+    font-weight: var(--font-weight-medium);
+}
+
+p,
+span {
+    font-size: 14px;
+    color: var(--text-color);
+    font-family: var(--body-font);
+    margin-bottom: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    list-style: none;
+    font-family: var(--body-font);
+}
+
+a {
+    font-size: 14px;
+    font-family: var(--body-font);
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+input[type="email"],
+input[type="text"],
+textarea,
+input[type="phone"],
+button {
+    outline: none;
+}
+
+/* Login */
+.form-control {
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  height: calc(1.3125rem + 1.2rem + 2px);
+  border: 1px solid #e2e5ec;
+  color: #898b92;
+}
+
+.login{
+  padding: 80px;
+}
+
+.login .card{
+  background: #F2F3F7;
+  margin-bottom: 20px;
+  border: 1px solid #E8E9EE;
+  border-radius: 10px;
+  box-shadow: 32px 44px 50px #E1E5EE, -23px -5px 30px #FBFDFE;
+}
+
+.login .btn-primary,
+.login .btn-primary:hover{
+  width: 100px;
+  background-color: #3f5087;
+  border-color: #3f5087;
+  border-radius: 4px;
 }
