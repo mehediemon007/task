@@ -2,7 +2,7 @@ import axios from "axios";
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 export const fetchLeads = async () => {
-  return await axios.get("/home").then((res) => {
+  return await axios.post("/lead/list").then((res) => {
       return res.data;
   });
 }

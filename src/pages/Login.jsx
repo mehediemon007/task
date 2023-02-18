@@ -23,7 +23,7 @@ const Login = () => {
                     res?.message,
                     "success"
                 );
-                navigate('/leads')
+                navigate('/admin/leads')
             }
         }).catch((err) => {
             if (err) {
