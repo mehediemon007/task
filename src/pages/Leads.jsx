@@ -2,7 +2,6 @@ import React, {useEffect, useState, useRef} from 'react';
 import Select from 'react-select';
 import { DateRangePicker } from 'react-date-range';
 import format from 'date-fns/format'
-import { addDays } from 'date-fns'
 import { fetchLeads, fetchStatus, fetchSource, fetchAssignee, filterLeads } from "../utils/fetchFromAPI";
 import {API_BASE_URL} from "../constants";
 
