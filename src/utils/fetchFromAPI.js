@@ -1,43 +1,23 @@
 import axios from "axios";
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
-
 export const loginData = async (data) => {
-  return await axios.post(`/api/login`, data).then((res) => {
+  return await axios.post("/login", data).then((res) => {
       return res.data;
   });
 }
 
 export const fetchLeads = async () => {
-  return await axios.post(`/api/lead/list`).then((res) => {
+  return await axios.post("/lead/list").then((res) => {
       return res.data;
   });
 }
 
 export const filterLeads = async (data) => {
-  return await axios.post(`api/lead/list`, data).then((res) => {
+  return await axios.post("/lead/list", data).then((res) => {
       return res.data;
   });
 }
-
-
-// export const loginData = async (data) => {
-//   return await axios.post("/login", data).then((res) => {
-//       return res.data;
-//   });
-// }
-
-// export const fetchLeads = async () => {
-//   return await axios.post("/lead/list").then((res) => {
-//       return res.data;
-//   });
-// }
-
-// export const filterLeads = async (data) => {
-//   return await axios.post("/lead/list", data).then((res) => {
-//       return res.data;
-//   });
-// }
 
 export const fetchStatus = async () => {
   return await axios.get("/base/lead-status",).then((res) => {
