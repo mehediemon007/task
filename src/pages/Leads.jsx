@@ -84,19 +84,6 @@ const Leads = () => {
         }
     }
 
-    const clearFilter = () =>{
-        setSelectedStatusValue([]);
-        setSelectedSourceValue([]);
-        setSelectedAssigneeValue([]);
-        setRange([
-            {
-                startDate: new Date(),
-                endDate: new Date(),
-                key: 'selection'
-            }
-        ])
-    }
-
     const submitFilter = (e) =>{
         e.preventDefault();
         let postData = {
@@ -110,10 +97,23 @@ const Leads = () => {
         filterLeads(postData)
         .then((res) => {
             if(res.code === 200){
-                setLeadsData(res.data.data);
-                clearFilter();    
+                setLeadsData(res.data.data);    
             }
         }).catch((err) => err);
+    }
+
+    const clearFilter = () =>{
+        setSelectedStatusValue([]);
+        setSelectedSourceValue([]);
+        setSelectedAssigneeValue([]);
+        setRange([
+            {
+                startDate: new Date(),
+                endDate: new Date(),
+                key: 'selection'
+            }
+        ]);
+        fetchData(1);
     }
 
     useEffect(()=>{
@@ -180,22 +180,32 @@ const Leads = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {leadsData.map(lead => (
-                                    <tr key={lead.id}>
-                                        <td><input type="checkbox"/></td>
-                                        <td>{lead.name}</td>
-                                        <td>{lead.phone}</td>
-                                        <td>{lead.followup_date ?? "-"}</td>
-                                        <td>{lead.lead_notes && <p>No notes created! <span><i className="fa fa-pencil" aria-hidden="true"></i></span></p>}</td>
-                                        <td className="assignees text-center">{lead.lead_assignees.map(assigne =>(
-                                            <img src={`${API_BASE_URL}/${assigne.image}`} alt={assigne.name} key={assigne.user_id}/>
-                                        ))}</td>
-                                        <td>{lead.email}</td>
-                                        <td>{lead.country.name}</td>
-                                        <td>{lead.lead_status.name}</td>
-                                        <td>{lead.source.name}</td>
-                                    </tr>
-                                ))}
+                                {leadsData.length > 0 ?
+                                    (
+                                        leadsData.map(lead => (
+                                            <tr key={lead.id}>
+                                                <td><input type="checkbox"/></td>
+                                                <td>{lead.name}</td>
+                                                <td>{lead.phone}</td>
+                                                <td>{lead.followup_date ?? "-"}</td>
+                                                <td>{lead.lead_notes && <p>No notes created! <span><i className="fa fa-pencil" aria-hidden="true"></i></span></p>}</td>
+                                                <td className="assignees text-center">{lead.lead_assignees.map(assigne =>(
+                                                    <img src={`${API_BASE_URL}/${assigne.image}`} alt={assigne.name} key={assigne.user_id}/>
+                                                ))}</td>
+                                                <td>{lead.email}</td>
+                                                <td>{lead.country.name}</td>
+                                                <td>{lead.lead_status.name}</td>
+                                                <td>{lead.source.name}</td>
+                                            </tr>
+                                        ))
+                                    ) : 
+                                    <>
+                                        <tr>
+                                            <td colSpan={10} className='text-center text-danger'>No Data Found!!Reset</td>
+                                        </tr>
+                                    </>
+                                
+                                }
                             </tbody>
                         </table>
                     </div>
