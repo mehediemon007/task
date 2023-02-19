@@ -7,8 +7,8 @@ export const loginData = async (data) => {
   });
 }
 
-export const fetchLeads = async () => {
-  return await axios.post("/lead/list").then((res) => {
+export const fetchLeads = async (page) => {
+  return await axios.post(`/lead/list?page=${page}`).then((res) => {
       return res.data;
   });
 }

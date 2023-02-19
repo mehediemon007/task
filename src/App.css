@@ -147,13 +147,30 @@ button {
 
 .filter-toolbar{
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-gap: 24px;
+    grid-template-columns: repeat(6,1fr);
+    grid-gap: 8px;
     padding: 16px;
 }
 
 .css-1jqq78o-placeholder{
     font-size: 14px;
+}
+
+.search-input input::placeholder{
+    font-size: 14px;
+}
+
+.search-input i{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    /* width: 50px;
+    height: 100%;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    outline: none; */
 }
 
 .fiter-action-btns{
@@ -164,7 +181,7 @@ button {
 
 .fiter-action-btns button{
     width: 100%;
-    height: 35px;
+    height: 38px;
     font-size: 14px;
     border: 1px solid #e1e1e1;
     border-radius: 4px;
@@ -177,6 +194,10 @@ button {
     color: var(--white-color);
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+}
+
+.leads-table-wpr{
+    min-height: 60vh;
 }
 
 .leads-table-wpr .table{
@@ -205,6 +226,17 @@ button {
 
 /* Date Range Picker */
 
+.date-input::before{
+    position: absolute;
+    content: "Contacted Date";
+    top: -10px;
+    left: 10px;
+    width: max-content;
+    font-size: 13px;
+    color: #a7aebe;
+    background-color: var(--white-color);
+}
+
 .date-input::after{
     position: absolute;
     content: "\f073";
@@ -214,6 +246,7 @@ button {
     color: #a7aebe;
 }
 
+.search-input input,
 .date-input input{
     width: 100%;
     height: 38px;
@@ -244,17 +277,105 @@ button {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Pagination */
+
+.leads-pagination-wpr{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.leads-pagination-wpr .data-show{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.leads-pagination-wpr .page-input{
+    position: relative;
+}
+
+.leads-pagination-wpr .page-input::before{
+    position: absolute;
+    content: attr(data-content);
+    top: -8px;
+    left: 50%;
+    width: max-content;
+    font-size: 12px;
+    color: #a7aebe;
+    background-color: var(--white-color);
+    transform: translateX(-50%);
+}
+
+.leads-pagination-wpr .page-input::after{
+    position: absolute;
+    content: "\f0d7";
+    top: 14px;
+    right: 10px;
+    color: #a7aebe;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+.leads-pagination-wpr .page-input input,
+.leads-pagination-wpr .page-input select{
+    appearance: none;
+    width: 80px;
+    height: 40px;
+    font-size: 14px;
+    color: #000;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding: 0 8px;
+    outline: none;
+}
+
+.data-pagination{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.data-pagination button{
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 /* Responsive */
 
 /* Min Width 1600px */
 @media only screen and (min-width: 1600px){
+
     .container{
-        max-width: 1550px !important;
+        max-width: calc(100% - 180px);
+    }
+
+    .filter-toolbar{
+        grid-gap: 24px !important;
     }
 
     .leads-table-wpr .table{
         display: table;
     }
+}
+
+/* Min Width 1400px */
+@media only screen and (min-width:1400px){
+
+    .container{
+        max-width: calc(100% - 80px);
+    }
+
+    .filter-toolbar{
+        grid-gap: 16px;
+    }
+
 }
 
 /* Min Width 1200px */
@@ -266,11 +387,20 @@ button {
 
 }
 
-/* Min Width 1200px */
+/* Max Width 991px */
 @media only screen and (max-width:991px){
 
     .container{
         max-width: 90%;
+    }
+
+    .filter-toolbar{
+        grid-template-columns: repeat(3,1fr);
+        grid-gap: 16px;
+    }
+
+    .leads-pagination-wpr{
+        justify-content: space-between;
     }
 
 }
@@ -284,8 +414,33 @@ button {
 
 }
 
-/* Max Width 390px */
+/* Max Width 576px */
+@media only screen and (max-width:576px){
 
+    .filter-toolbar{
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 10px;
+    }
+    
+}
+
+/* Max Width 416px */
+@media only screen and (max-width:416px){
+
+    .filter-toolbar{
+        grid-template-columns: 1fr;
+    }
+
+    .leads-pagination-wpr{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+    
+}
+
+/* Max Width 390px */
 @media only screen and (max-width:390px){
 
     .container{
