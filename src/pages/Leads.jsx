@@ -106,7 +106,7 @@ const Leads = () => {
             contacted_date_from: range[0].startDate !== "" ? format(range[0].startDate, "yyyy/MM/dd") : "",
             contacted_date_to: range[0].endDate !== "" ? format(range[0].endDate, "yyyy/MM/dd") : "" 
         }
-
+        
         filterLeads(postData)
         .then((res) => {
             if(res.code === 200){
@@ -221,15 +221,15 @@ const Leads = () => {
                             <tbody>
                                 {leadsData.length > 0 ?
                                     (
-                                        leadsData.slice(0,paginateData.per_page).map((lead,indx) => (
+                                        leadsData.slice(0,paginateData.per_page).map((lead, indx) => (
                                             <tr key={indx}>
                                                 <td><input type="checkbox"/></td>
                                                 <td>{lead?.name}</td>
                                                 <td>{lead?.phone}</td>
                                                 <td>{lead?.followup_date ?? "-"}</td>
                                                 <td>{lead?.lead_notes && <p>No notes created! <span><i className="fa fa-pencil" aria-hidden="true"></i></span></p>}</td>
-                                                <td className="assignees text-center">{lead.lead_assignees.map(assignee =>(
-                                                    assignee?.image ? <img src={`${API_BASE_URL}/${assignee.image}`} alt={assignee.name} key={assignee.user_id}/> : null
+                                                <td className="assignees text-center">{lead.lead_assignees.map((assignee, indx) =>(
+                                                    assignee?.image ? <img src={`${API_BASE_URL}/${assignee.image}`} alt={assignee.name} key={indx}/> : null
                                                 ))}</td>
                                                 <td>{lead?.email}</td>
                                                 <td>{lead?.country?.name}</td>
