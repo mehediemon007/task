@@ -168,8 +168,8 @@ const Leads = () => {
                         <div className="single-filter">
                             <div className="search-input position-relative">
                                 <input type="text" placeholder='Search' value={search} onChange={ (e) => setSearch(e.target.value) }/>
-                                {/* <button type='submit' onSubmit={handleSearchSubmit}><i className="fa fa-search" aria-hidden="true"></i></button> */}
-                                <i className="fa fa-search" aria-hidden="true"></i>
+                                <button className="btn" type='submit' onSubmit={handleSubmit}><i className="fa fa-search" aria-hidden="true"></i></button>
+                                {/* <i className="fa fa-search" aria-hidden="true"></i> */}
                             </div>
                         </div>
                         <div className="single-filter">
