@@ -12,8 +12,12 @@ const Leads = () => {
     const [open, setOpen] = useState(false);
     const [range, setRange] = useState([
         {
-            startDate: new Date(),
-            endDate: new Date(),
+            // startDate: new Date(),
+            // endDate: new Date(),
+            // key: 'selection'
+
+            startDate: "",
+            endDate: "",
             key: 'selection'
         }
     ]);
@@ -99,8 +103,8 @@ const Leads = () => {
             lead_status_id: selectedStatusValue || [],
             source_id: selectedSourceValue || [],
             user_id: selectedAssigneeValue || [],
-            contacted_date_from: format(range[0].startDate, "yyyy/MM/dd") || "",
-            contacted_date_to: format(range[0].endDate, "yyyy/MM/dd") || ""
+            contacted_date_from: range[0].startDate !== "" ? format(range[0].startDate, "yyyy/MM/dd") : "",
+            contacted_date_to: range[0].endDate !== "" ? format(range[0].endDate, "yyyy/MM/dd") : "" 
         }
 
         filterLeads(postData)
@@ -182,7 +186,7 @@ const Leads = () => {
                         </div>
                         <div className="single-filter date-filter position-relative">
                             <div className="date-input position-relative">
-                                <input value={`${format(range[0].startDate, "dd/MM/yyyy")} - ${format(range[0].endDate, "dd/MM/yyyy")}`} readOnly onClick={ () => setOpen(open => !open) }/>
+                                <input value={(range[0].startDate && range[0].endDate) === "" ? `${format(new Date(), "dd/MM/yyyy")} - ${format(new Date(), "dd/MM/yyyy")}` : `${format(range[0].startDate, "dd/MM/yyyy")} - ${format(range[0].endDate, "dd/MM/yyyy")}`} readOnly onClick={ () => setOpen(open => !open) }/>
                             </div>
                             <div className="date-picker-wpr" ref={refOne}>
                                 {open && 
